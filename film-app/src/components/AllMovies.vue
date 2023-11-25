@@ -1,4 +1,6 @@
 <template>
+        <p>Liczba znalezionych wyników: {{ this.filteredMovies.length }}</p>
+        <p>Liczba wyświetlanych wyników: {{ this.length }}</p>
     <table class="table table-hover">
               <thead>
                 <tr>
@@ -9,7 +11,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="movie in movies.slice(0, length)" :key="movie.title">
+                <tr v-for="movie in displayMovies" :key="movie.title">
                   <td>{{ movie.title }}</td>
                   <td>{{ movie.year }}</td>
                   <td>
@@ -25,28 +27,35 @@
                 </tr>
               </tbody>
             </table>
-            <button @click="showMore" class="btn btn-info col-sm-12 buttonMargin">Show More</button>
-            <button @click="hide" class="btn btn-info col-sm-12 buttonMargin" :class="{ hideItem: length == 0 }">Hide</button>
+            <button @click="showMore" class="btn btn-info col-sm-12 buttonMargin">Pokaż więcej</button>
+            <button @click="hide" class="btn btn-info col-sm-12 buttonMargin" :class="{ hideItem: length == 0 }">Ukryj</button>
 </template>
 
 <script>
-import json from '../assets/movies.json'
-
 export default {
     name: 'AllMoviesComponent',
-    data() {
-      return {
-        movies: json,
-        length: 10
+    props: {
+      filteredMovies: {
+        type:Array  
       }
     },
+    data() {
+      return {
+        length: 10,
+      }
+    },
+    computed: {
+      displayMovies() {
+        return this.filteredMovies.slice(0, this.length)
+      }
+    },  
     methods: {
-        showMore() {
-            this.length += 10
-        },
-        hide() {
-            this.length = 0
-        }
+      showMore() {
+          this.length += 10
+      },
+      hide() {
+          this.length = 0
+      }
     }
 }
 </script>

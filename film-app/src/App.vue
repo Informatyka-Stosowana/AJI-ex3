@@ -2,30 +2,32 @@
  <div class="container">
     <h1>Baza filmów</h1>
     <!-- Template poszczególnych komponentów -->
-    <SearchComponent />
-    <AllMoviesComponent />
-    <GenreMoviesComponent />
-    <CastMoviesComponent />
+    <SearchComponent :movies="movies"/>
+    <GenreMoviesComponent :movies="movies"/>
+    <CastMoviesComponent :movies="movies"/>
   </div>
 </template>
 
 <script>
 // Import komponentów
 import SearchComponent from './components/Search.vue'
-import AllMoviesComponent from './components/AllMovies.vue'
 import GenreMoviesComponent from './components/GenreMovies.vue'
 import CastMoviesComponent from './components/CastMovies.vue'
 
+import json from './assets/movies.json'
+
 export default {
   name: 'App',
-  components: { SearchComponent,
-                AllMoviesComponent,
-                GenreMoviesComponent,
-                CastMoviesComponent },
   data() {
     return {
-      
+      movies: json
     }
+  },
+  components: { SearchComponent,
+                GenreMoviesComponent,
+                CastMoviesComponent },
+  methods: {
+
   }
 }
 </script>
