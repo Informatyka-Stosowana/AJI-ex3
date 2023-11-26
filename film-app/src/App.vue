@@ -25,10 +25,7 @@ export default {
   },
   components: { SearchComponent,
                 GenreMoviesComponent,
-                CastMoviesComponent },
-  methods: {
-
-  }
+                CastMoviesComponent }
 }
 </script>
 

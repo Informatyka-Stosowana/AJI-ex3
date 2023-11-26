@@ -1,6 +1,6 @@
 <template>
         <p>Liczba znalezionych wyników: {{ this.filteredMovies.length }}</p>
-        <p>Liczba wyświetlanych wyników: {{ this.length }}</p>
+        <p>Liczba wyświetlanych wyników: {{ getLength() }}</p>
     <table class="table table-hover">
               <thead>
                 <tr>
@@ -55,6 +55,12 @@ export default {
       },
       hide() {
           this.length = 0
+      },
+      getLength() {
+        if (this.filteredMovies.length > this.length) {
+            return this.length
+        }
+        return this.filteredMovies.length
       }
     }
 }

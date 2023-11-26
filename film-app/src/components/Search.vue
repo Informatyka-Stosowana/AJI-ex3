@@ -21,7 +21,7 @@
                 <input type="text" id="inputCast" class="form-control" placeholder="Imię i nazwisko" v-model="inputCast"/>
               </div>
               <div class="form-group">
-                  <input type="button" class="btn btn-info col-sm-12" value="Szukaj" @click="searchMovie"/>
+                  <input type="button" class="btn btn-info col-sm-12" value="Szukaj" @click="searchMovie" />
               </div>
               <br>
             </form>
@@ -54,16 +54,15 @@
             searchMovie() {
                 this.filteredMovies = this.movies
                 if (this.inputTitle != '') {
-                    this.filteredMovies = filter(this.filteredMovies, (movie) => movie.title.toLowerCase().includes(this.inputTitle.toLowerCase()))
+                    this.filteredMovies = filter(this.filteredMovies, (movie) => movie.title.toLowerCase().includes(this.inputTitle.toLowerCase().trim()))
                 }
                 if (this.inputYearFrom != '') {
-                    this.filteredMovies = filter(this.filteredMovies, (movie) => movie.year >= this.inputYearFrom)
+                    this.filteredMovies = filter(this.filteredMovies, (movie) => movie.year >= this.inputYearFrom.trim())
                 }
                 if (this.inputYearTo != '') {
-                    this.filteredMovies = filter(this.filteredMovies, (movie) => movie.year <= this.inputYearTo)
+                    this.filteredMovies = filter(this.filteredMovies, (movie) => movie.year <= this.inputYearTo.trim())
                 }
                 if (this.inputCast != '') {
-                    console.log(this.inputCast)
                     this.filteredMovies = filter(this.filteredMovies, (movie) => filter(movie.cast, (el) => el.toLowerCase().includes(this.inputCast.toLowerCase().trim())).length != 0) 
                 }
             }
